@@ -1,0 +1,39 @@
+[
+  {
+    "key": "BaseUri",
+    "type": "input",
+    "defaultValue": "https://api.paycomonline.net/v4/rest/index.php",
+    "templateOptions": {
+      "label": "Base URI",
+      "required": true
+    }
+  },
+  {
+    "key": "SID",
+    "type": "input",
+    "defaultValue": "",
+    "templateOptions": {
+      "label": "SID",
+      "required": true
+    }
+  },
+  {
+    "key": "Token",
+    "type": "input",
+    "defaultValue": "",
+    "templateOptions": {
+      "label": "Token",
+      "type": "password",
+      "required": true
+    }
+  },
+  {
+    "key": "PageSize",
+    "type": "input",
+    "defaultValue": "500",
+    "templateOptions": {
+      "label": "PageSize",
+      "required": true
+    }
+  }
+]
