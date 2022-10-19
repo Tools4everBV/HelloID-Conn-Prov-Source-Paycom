@@ -77,6 +77,23 @@ foreach($employee in $employees){
 
     $response = Invoke-RestMethod -Method GET -Uri $uri -Headers $headers  -ContentType 'application/json' -TimeoutSec 3600;
     
+    $customFieldsuri = $config.BaseUri + "/api/v1/employee/" + $employee.eecode + "/customfield"
+
+    $responseCustomFields = Invoke-RestMethod -Method GET -Uri $customFieldsuri -Headers $headers  -ContentType 'application/json' -TimeoutSec 3600;
+
+    
+    $Object = $responseCustomFields.data[0]
+ 
+    $custom = @{};
+    foreach($prop in $Object.PSObject.properties)
+    {
+        if($prop.Value.description.Length -gt 0) {
+            $custom["_" + $prop.Value.description.replace(" ","").replace("/","").replace("#","").replace("-","")] = $prop.Value.value;
+        }
+    }
+    $person['CustomFields'] = [System.Collections.ArrayList]@();
+    $person['CustomFields'] = $custom
+
     $contract =  @{};
     
     #[void]$contract.AddRange($response.data);
